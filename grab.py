@@ -16,7 +16,7 @@ def rnd():
     ret = "".join(lst)
     return ret
 def writelog(txt):
-    l=open('log.txt','w')
+    l=open('log.txt','wb')
     l.write(txt + "\n")
     l.close()
 
