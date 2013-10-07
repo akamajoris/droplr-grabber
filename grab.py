@@ -36,10 +36,10 @@ def chk():
             o.close()
         elif content.find('<section class="text note">') > 0:
             print path + ' - text note'
-            writelog(path + ' - text note')
+            writelog(path + u' - text note')
         else:
             print path + ' - file'
-            writelog( path + ' - file')
+            writelog( path + u' - file')
     return status
 
 
