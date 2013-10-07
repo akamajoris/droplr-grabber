@@ -9,7 +9,7 @@ import requests
 import unicodedata
 
 host = "d.pr"
-dir = 'downloads/'
+dir = u'downloads/'
 
 def rnd():
     lst = [random.choice(string.ascii_letters + string.digits) for n in xrange(4)]
@@ -21,7 +21,7 @@ def writelog(txt):
     l.close()
 
 def chk():
-    path = 'http://' + host + "/f/" + rnd()
+    path = u'http://' + host + "/f/" + rnd()
     status = requests.head(path).status_code
     if status == 200:
         content = requests.get(path).content
