@@ -31,7 +31,7 @@ def chk():
             print imgalt
             imgsrc = page.findAll('section', {'class':"image"})[0].img['src']
             h = urlparse(imgsrc)
-            o=open(dir + unicodedata.normalize('NFKD', imgalt.replace(":","_").replace("\\","_").replace("/","_")).encode('ascii','ignore'), 'wb')
+            o=open(dir + unicodedata.normalize('NFKD', imgalt.replace(":","_").replace("\\","_").replace("/","_")).encode('utf-8','ignore'), 'wb')
             o.write(requests.get(imgsrc).content)
             o.close()
         elif content.find('<section class="text note">') > 0:
