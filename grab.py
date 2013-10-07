@@ -8,7 +8,7 @@ from urlparse import urlparse
 import requests
 import unicodedata
 
-host = "d.pr"
+host = u"d.pr"
 dir = u'downloads/'
 
 def rnd():
@@ -16,12 +16,12 @@ def rnd():
     ret = "".join(lst)
     return ret
 def writelog(txt):
-    l=open('log.txt','wb')
+    l=open(u'log.txt','wb')
     l.write(txt + "\n")
     l.close()
 
 def chk():
-    path = u'http://' + host + "/f/" + rnd()
+    path = u'http://' + host + u"/f/" + rnd()
     status = requests.head(path).status_code
     if status == 200:
         content = requests.get(path).content
