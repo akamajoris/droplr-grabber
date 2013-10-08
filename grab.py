@@ -12,27 +12,25 @@ import time
 
 host = u"d.pr"
 dir = u'downloads/'
-
 headers = {
     'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3',
     'Referer' : 'http://d.pr'
 }
-
 def rnd():
     lst = [random.choice(string.ascii_letters + string.digits) for n in xrange(4)]
     ret = "".join(lst)
     return ret
-
 def writelog(txt):
     l=open(u'log.txt','wb')
     l.write(txt + "\n")
     l.close()
-	
+
 def chk():
     path = u'http://' + host + u"/f/" + rnd()
-    status = requests.head(path).status_code
+    req = requests.get(path, headers=headers)
+    status = req.status_code
+    content = req.content
     if status == 200:
-        content = requests.get(path, headers=headers).content
         if content.find('<section class="image">') > 0:
             page = BeautifulSoup(''.join(content))
             imgalt = page.findAll('section', {'class':"image"})[0].img['alt']
@@ -50,7 +48,7 @@ def chk():
             writelog( path + u' - file')
     time.sleep(5)
     return status
+
+
 while 1:
-
-    print chk()
-
+    chk()
